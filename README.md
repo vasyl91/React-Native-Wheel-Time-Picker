@@ -6,7 +6,8 @@ Simple and fully functional Wheel Time Picker for React Native.
 
 1. Install following modules:
 
-https://github.com/ElekenAgency/ReactNativeWheelPicker and https://github.com/ocetnik/react-native-background-timer
+- https://github.com/ElekenAgency/ReactNativeWheelPicker 
+- https://github.com/ocetnik/react-native-background-timer
 
 2. Paste provided catalog with `TimePickerMenu.js` and `PickerButton.js` to your `src` folder and follow Usage instructions.
 
