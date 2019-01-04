@@ -133,7 +133,7 @@ class TimePickerMenu extends Component {
   }
 }
 
-export default connect(mapStateToProps)(TimePickerMenu);
+export default (TimePickerMenu);
 
 const styles = StyleSheet.create(
   {
