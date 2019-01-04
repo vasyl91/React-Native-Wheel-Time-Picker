@@ -1,27 +1,17 @@
 // TimePickerMenu.js
-// A popup Time Picker menu
+// Time Picker popup
 
 import React, { Component } from "react";
 import { Text, View, Modal, StyleSheet } from "react-native";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import PickerButton from "../timepicker/PickerButton";
 import * as colors from "../timepicker/colors";
-
 import { WheelPicker } from 'react-native-wheel-picker-android';
-import BackgroundTimer from 'react-native-background-timer';
-
-function mapStateToProps(state) {
-  return {
-  };
-}
+import TimerMixin from "react-timer-mixin";
 
 function parseMillisecondsIntoReadableTime(milliseconds){
-  //Get hours from milliseconds
   var hours = milliseconds / (1000*60*60);
   var absoluteHours = Math.floor(hours);
-
-  //Get remainder from hours and convert to minutes
+	
   var minutes = (hours - absoluteHours) * 60;
   var absoluteMinutes = Math.floor(minutes);
 
@@ -58,7 +48,7 @@ class TimePickerMenu extends Component {
 
     this.state = {
       selectedHours: 9,
-		  selectedMinutes: 0,
+      selectedMinutes: 0,
       setHour: '',
       setMinute: '',
       nextAlarm: '',
@@ -66,7 +56,7 @@ class TimePickerMenu extends Component {
   }
 
   componentDidMount() {
-    const currentTimeId = BackgroundTimer.setInterval(() => {
+    TimerMixin.setInterval(() => { // refreshes remaining time
       this.getTime();
     }, 10);
   }
@@ -88,12 +78,9 @@ class TimePickerMenu extends Component {
 
     var convertTime = parseMillisecondsIntoReadableTime(math);
 
-    trickHour = this.state.selectedHours * 1;
-    trickMinute = this.state.selectedMinutes * 1;
-
     this.setState({ nextAlarm: convertTime });
-    this.setState({ setHour: trickHour });
-    this.setState({ setMinute: trickMinute });
+    this.setState({ setHour: Number(this.state.selectedHours) });
+    this.setState({ setMinute: Number(this.state.selectedMinutes) });
   }
   
    render() {
